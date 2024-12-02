@@ -24,7 +24,7 @@ def is_correct(xs):  # xs is a list of ints
     return not error_found
 
 
-def solution2(lines): 
+def solution2(lines):
     result = 0
     for l in lines:
         xs = l.split()
