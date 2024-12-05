@@ -1,4 +1,4 @@
-with open("input\input.txt") as input:
+with open("input\input1.txt") as input:
     lines = input.read().splitlines()
 
 
