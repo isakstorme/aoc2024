@@ -35,15 +35,11 @@ def solution2(updates, ruledict):   #Not sure if my sorting guarantees correct s
     for u in updates:
         is_correct = True
         u_list = u.split(",")
-        for i in range(len(u_list)):
-            index = i
-            i1 = 0
-            while i1 < index:
-                if u_list[i1] in ruledict[u_list[index]] and i1 < index:
+        for i in range(len(u_list)):  # Bubble sort, ruledict defines the order completely, input is friendly enough. You don't have to deduce a -> c if a ->b and b ->c but it is stated explicitly
+            for j in range(len(u_list) - 1):
+                if u_list[j] in ruledict[u_list[j + 1]]:
+                    u_list[j], u_list[j + 1] = u_list[j + 1], u_list[j]
                     is_correct = False
-                    u_list = u_list[:i1] + [u_list[index]] + u_list[i1:index] + u_list[index + 1:]
-                    break
-                i1 += 1
         if not is_correct:
             p2 += int(u_list[len(u_list) // 2])
     return p2
