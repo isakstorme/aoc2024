@@ -30,7 +30,7 @@ def solution1(updates, ruledict):
             p1 += int(u_list[len(u_list) // 2])
     return p1
 
-def solution2(updates, ruledict):
+def solution2(updates, ruledict):   #Not sure if my sorting guarantees correct solution or if I was just lucky with the input
     p2 = 0
     for u in updates:
         is_correct = True
