@@ -35,6 +35,7 @@ def solution2(updates, ruledict):   #Not sure if my sorting guarantees correct s
     for u in updates:
         is_correct = True
         u_list = u.split(",")
+        # Smart idea to avoid sorting is just to find the one element with an equal number of predecessors and successors
         for i in range(len(u_list)):  # Bubble sort, ruledict defines the order completely, input is friendly enough. You don't have to deduce a -> c if a ->b and b ->c but it is stated explicitly
             for j in range(len(u_list) - 1):
                 if u_list[j] in ruledict[u_list[j + 1]]:

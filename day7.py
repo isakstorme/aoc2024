@@ -1,4 +1,3 @@
-from math import perm
 with open("input/input7.txt") as file:
     lines = file.read().splitlines()
 
@@ -60,7 +59,9 @@ def solution2(lines):
 
 
 if __name__ == '__main__':
-    ans1 = solution1(lines)
-    print(ans1)
-    ans2 = solution2(lines)
-    print(ans2)
+    p1 = solution1(lines)
+    p2 = solution2(lines)
+    f = open("solutions\solution7.txt", "w")
+    f.write(str(p1) + ": answer 1 \n")
+    f.write(str(p2) + ": answer 2 ")
+    f.close()

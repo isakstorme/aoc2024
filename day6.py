@@ -1,5 +1,3 @@
-import cmath
-
 with open("input/input6.txt") as file:
     grid = file.read().splitlines()
 
@@ -82,7 +80,7 @@ def solution2_helper(grid): #returns all coordinates on path, Identical to solut
             visited.add(pos)
     return visited
 
-def solution2(grid):
+def solution2(grid):  #people on internet mention ways of optimising, apprentley it could be clever to use a jump table, I might look at that if I feel like later.
     h = len(grid)
     w = len(grid[0])
     pos = (0, 0)  # (r, c)
