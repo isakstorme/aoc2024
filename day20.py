@@ -38,7 +38,7 @@ def solution1(grid):
         visited.add(pos)
         path.append(pos)
         dirs = [(-1, 0), (0, -1), (1, 0), (0, 1)]
-        adj = [(pos[0] + d[0], pos[1] + d[1]) for d in dirs if r + d[0] in range(h) and c + d[1] in range(w)]
+        adj = [(pos[0] + d[0], pos[1] + d[1]) for d in dirs if pos[0] + d[0] in range(h) and pos[1] + d[1] in range(w)]
         for r, c in adj:
             if (grid[r][c] == "." or grid[r][c] == "E") and (r, c) not in visited:
                 pos = r, c
@@ -47,24 +47,15 @@ def solution1(grid):
             break
     for n, p in enumerate(path):
         costs[p] = len(path) - n - 1
-    visited = set()
-    pos = s
     result = 0
-    print(costs)
-    while True:
-        visited.add(pos)
-        path.append(pos)
+    for pos in path:
         dirs = [(-1, 0), (0, -1), (1, 0), (0, 1)]
-        adj = [(pos[0] + d[0], pos[1] + d[1]) for d in dirs if r + d[0] in range(h) and c + d[1] in range(w)]
+        adj = [(pos[0] + d[0], pos[1] + d[1]) for d in dirs if pos[0] + d[0] in range(h) and pos[1] + d[1] in range(w)]
         for r, c in adj:
             adj2 = [(r + d[0], c + d[1]) for d in dirs if r + d[0] in range(h) and c + d[1] in range(w)]
             for r2, c2 in adj2:  #Tries the cheat
-                if (r2, c2) in costs and costs[(r2, c2)] + 2 <= costs[pos] - 99:  #2 because cheat equals two steps
+                if (r2, c2) in costs and costs[(r2, c2)] + 2 < costs[pos] - 99:  #2 because cheat equals two steps
                     result += 1
-            if (grid[r][c] == "." or grid[r][c] == "E") and (r, c) not in visited:
-                pos = r, c
-        if pos == e:
-            break
     return result
 
 
