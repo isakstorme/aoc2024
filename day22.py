@@ -1,4 +1,4 @@
-with open("input/example22.txt") as file:
+with open("input/input22.txt") as file:
     ints = list(map(int, file.read().splitlines()))
 
 
@@ -44,22 +44,29 @@ def solution2(ints):
     for i in ints:
         seq_dict = dict()
         n = i
-        value = last_digit(n)
-        seq = []  # current sequence
+        seq_list = [[], [], [], []]  # current sequence
+        delay = 3
+        value = last_digit(i)
         for r in range(2000):
             #print(seq)
             n = algorithm(n)
-            seq.append(last_digit(n) - value)
+            seq_list[0].append(last_digit(n) - value)
+            if delay < 3:
+                seq_list[1].append(last_digit(n) - value)
+            if delay < 2:
+                seq_list[2].append(last_digit(n) - value)
+            if delay < 1:
+                seq_list[3].append(last_digit(n) - value)
             value = last_digit(n)
-            if seq == [-2,1,-1,3]:
-                print(value)
-            if len(seq) == 4:
-                #print(seq)
-                if tuple(seq) not in seq_dict:
-                    seq_dict[tuple(seq)] = value
-                elif value > seq_dict[tuple(seq)]:
-                    seq_dict[tuple(seq)] = value
-                seq = []
+            for n1, seq in enumerate(seq_list):
+                if len(seq) == 4:
+                    if tuple(seq) not in seq_dict:
+                        seq_dict[tuple(seq)] = value
+                    #elif value > seq_dict[tuple(seq)]:  #This was a bug, if a sequence has been detected it can't happen again!
+                    #    seq_dict[tuple(seq)] = value
+                    seq_list[n1] = []
+            if delay > 0:
+                delay -= 1
         for s in seq_dict.keys():
             if s in seqs:
                 seqs[s] += seq_dict[s]
